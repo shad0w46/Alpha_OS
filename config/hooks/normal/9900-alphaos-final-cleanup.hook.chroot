@@ -1,0 +1,70 @@
+#!/bin/sh
+set -eu
+
+echo "==> AlphaOS: final cleanup..."
+
+# ------------------------------------------------------------
+# Remove AlphaOS build/helper scripts that are not needed
+# after installation.
+# ------------------------------------------------------------
+
+
+# Remove temporary AlphaOS helper files if present.
+rm -rf /tmp/alphaos
+rm -rf /var/tmp/alphaos
+
+# ------------------------------------------------------------
+# Remove common build/cache leftovers.
+# ------------------------------------------------------------
+
+rm -rf /root/.cache
+rm -rf /root/.local/share/Trash
+
+find /tmp -mindepth 1 -maxdepth 1 -exec rm -rf {} + 2>/dev/null || true
+find /var/tmp -mindepth 1 -maxdepth 1 -exec rm -rf {} + 2>/dev/null || true
+
+# ------------------------------------------------------------
+# Clean package manager caches.
+# ------------------------------------------------------------
+
+if command -v apt-get >/dev/null 2>&1; then
+    apt-get clean
+fi
+
+rm -rf /var/cache/apt/archives/*.deb
+rm -rf /var/lib/apt/lists/*
+
+# ------------------------------------------------------------
+# Remove logs generated during ISO creation.
+# ------------------------------------------------------------
+
+find /var/log -type f \
+    \( -name '*.log' -o -name '*.log.*' \) \
+    -delete 2>/dev/null || true
+
+# Recreate important log directories if necessary.
+mkdir -p /var/log
+
+# ------------------------------------------------------------
+# Remove shell history from the build environment.
+# ------------------------------------------------------------
+
+rm -f /root/.bash_history
+rm -f /root/.zsh_history
+rm -f /root/.ash_history
+
+# ------------------------------------------------------------
+# Remove machine-specific temporary state.
+# Do NOT remove /etc/machine-id permanently; live-build/
+# systemd will handle it appropriately.
+# ------------------------------------------------------------
+
+rm -f /var/lib/systemd/random-seed
+
+# ------------------------------------------------------------
+# Remove crash dumps.
+# ------------------------------------------------------------
+
+rm -rf /var/crash/*
+
+echo "==> AlphaOS: final cleanup complete."

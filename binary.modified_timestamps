@@ -11,6 +11,8 @@ f binary/boot/grub/theme.cfg
 d binary/boot/grub/live-theme
 f binary/boot/grub/live-theme/theme.txt
 f binary/boot/grub/loopback.cfg
+d binary/boot/grub/themes
+d binary/boot/grub/themes/alpha
 f binary/boot/grub/efi.img
 d binary/boot/grub/x86_64-efi
 f binary/boot/grub/x86_64-efi/grub.cfg

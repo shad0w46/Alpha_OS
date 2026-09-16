@@ -1,20 +1,34 @@
 #!/bin/sh
 set -eu
 
-echo "==> AlphaOS: removing Debian wallpapers..."
+echo "==> AlphaOS: removing Debian wallpaper artwork..."
 
-# Remove Debian desktop wallpaper packages' installed artwork.
+# Remove known Debian wallpaper locations.
 rm -rf /usr/share/backgrounds/debian
 rm -rf /usr/share/wallpapers/debian
 rm -rf /usr/share/wallpapers/desktop-base
 
-# Remove Debian wallpaper files from common wallpaper locations.
-find /usr/share/backgrounds -type f \
-    ! -path '/usr/share/backgrounds/alphaos/*' \
-    -delete 2>/dev/null || true
+# Remove Debian wallpaper collections if present.
+rm -rf /usr/share/backgrounds/desktop-base
+rm -rf /usr/share/wallpapers/desktop-base
 
-find /usr/share/wallpapers -type f \
-    ! -path '/usr/share/wallpapers/alphaos/*' \
-    -delete 2>/dev/null || true
+# Remove wallpaper files from the desktop-base package if they remain.
+if [ -d /usr/share/backgrounds ]; then
+    find /usr/share/backgrounds \
+        -type f \
+        ! -path '/usr/share/backgrounds/alphaos/*' \
+        -delete 2>/dev/null || true
+fi
 
-echo "==> AlphaOS: Debian wallpapers removed."
+if [ -d /usr/share/wallpapers ]; then
+    find /usr/share/wallpapers \
+        -type f \
+        ! -path '/usr/share/wallpapers/alphaos/*' \
+        -delete 2>/dev/null || true
+fi
+
+# Recreate AlphaOS wallpaper directory in case a parent directory
+# was removed by the cleanup above.
+mkdir -p /usr/share/backgrounds/alphaos
+
+echo "==> AlphaOS: Debian wallpaper artwork removed."

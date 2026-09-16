@@ -1,0 +1,20 @@
+#!/bin/sh
+set -eu
+
+echo "==> AlphaOS: enabling AlphaOS Plymouth theme..."
+
+KERNEL_VERSION="6.19.0-alpha-alpha-6.19-schedext"
+
+if ! command -v plymouth-set-default-theme >/dev/null 2>&1; then
+    echo "ERROR: plymouth-set-default-theme not found"
+    exit 1
+fi
+
+plymouth-set-default-theme alphaos
+
+if [ -d "/lib/modules/${KERNEL_VERSION}" ]; then
+    echo "==> AlphaOS: rebuilding ${KERNEL_VERSION} initramfs with Plymouth..."
+    update-initramfs -u -k "${KERNEL_VERSION}"
+fi
+
+echo "==> AlphaOS: Plymouth theme enabled."

@@ -26,6 +26,16 @@ Rectangle {
         spacing: 16
         width: 360
 
+        Image {
+            width: 120
+            height: 120
+            anchors.horizontalCenter: parent.horizontalCenter
+            source: "alpha-logo.png"
+            fillMode: Image.PreserveAspectFit
+            smooth: true
+            asynchronous: true
+        }
+
         Label {
             width: parent.width
             text: "AlphaOS"
@@ -58,7 +68,11 @@ Rectangle {
             text: "Login"
 
             onClicked: {
-                sddm.login(username.text, password.text, session.currentIndex)
+                sddm.login(
+                    username.text,
+                    password.text,
+                    session.currentIndex
+                )
             }
         }
     }

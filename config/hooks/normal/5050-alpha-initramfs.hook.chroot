@@ -2,6 +2,29 @@
 set -eu
 
 KERNEL_VERSION="6.19.0-alpha-alpha-6.19-schedext"
+PLYMOUTH_THEME="alphaos"
+
+echo "==> AlphaOS: configuring Plymouth..."
+
+if [ ! -d "/usr/share/plymouth/themes/${PLYMOUTH_THEME}" ]; then
+    echo "ERROR: Plymouth theme ${PLYMOUTH_THEME} is missing"
+    exit 1
+fi
+
+if [ ! -f "/usr/share/plymouth/themes/${PLYMOUTH_THEME}/${PLYMOUTH_THEME}.plymouth" ]; then
+    echo "ERROR: AlphaOS Plymouth theme file is missing"
+    exit 1
+fi
+
+if ! command -v plymouth-set-default-theme >/dev/null 2>&1; then
+    echo "ERROR: plymouth-set-default-theme is not installed"
+    exit 1
+fi
+
+plymouth-set-default-theme "${PLYMOUTH_THEME}"
+
+echo "==> AlphaOS: Plymouth theme:"
+plymouth-set-default-theme
 
 echo "==> AlphaOS: generating initramfs for ${KERNEL_VERSION}..."
 

@@ -14,6 +14,10 @@
 /boot/grub/loopback.cfg
 /boot/grub/splash.png
 /boot/grub/theme.cfg
+/boot/grub/themes
+/boot/grub/themes/alpha
+/boot/grub/themes/alpha/grub-background.png
+/boot/grub/themes/alpha/theme.txt
 /boot/grub/unicode.pf2
 /boot/grub/x86_64-efi
 /boot/grub/x86_64-efi/acpi.mod
