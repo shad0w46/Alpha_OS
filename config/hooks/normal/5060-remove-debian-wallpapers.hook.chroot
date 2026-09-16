@@ -1,0 +1,20 @@
+#!/bin/sh
+set -eu
+
+echo "==> AlphaOS: removing Debian wallpapers..."
+
+# Remove Debian desktop wallpaper packages' installed artwork.
+rm -rf /usr/share/backgrounds/debian
+rm -rf /usr/share/wallpapers/debian
+rm -rf /usr/share/wallpapers/desktop-base
+
+# Remove Debian wallpaper files from common wallpaper locations.
+find /usr/share/backgrounds -type f \
+    ! -path '/usr/share/backgrounds/alphaos/*' \
+    -delete 2>/dev/null || true
+
+find /usr/share/wallpapers -type f \
+    ! -path '/usr/share/wallpapers/alphaos/*' \
+    -delete 2>/dev/null || true
+
+echo "==> AlphaOS: Debian wallpapers removed."

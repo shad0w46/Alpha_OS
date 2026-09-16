@@ -1,0 +1,13 @@
+--2026-09-16 09:57:44--  http://deb.debian.org/debian//dists/trixie/contrib/Contents-all.gz
+Resolving deb.debian.org (deb.debian.org)... 2a04:4e42:fea::644, 2a04:4e42:fe7::644, 167.82.62.132, ...
+Connecting to deb.debian.org (deb.debian.org)|2a04:4e42:fea::644|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 133992 (131K) [application/x-gzip]
+Saving to: ‘cache/contents.chroot/trixie/contrib/contents-all.gz’
+
+     0K .......... .......... .......... .......... .......... 38% 1.93M 0s
+    50K .......... .......... .......... .......... .......... 76% 1.89M 0s
+   100K .......... .......... ..........                      100% 2.04M=0.07s
+
+2026-09-16 09:57:44 (1.94 MB/s) - ‘cache/contents.chroot/trixie/contrib/contents-all.gz’ saved [133992/133992]
+

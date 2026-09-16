@@ -1,0 +1,20 @@
+#!/bin/sh
+set -eu
+
+KERNEL_VERSION="6.19.0-alpha-alpha-6.19-schedext"
+
+echo "==> AlphaOS: generating initramfs for ${KERNEL_VERSION}..."
+
+if [ ! -x /usr/sbin/update-initramfs ]; then
+    echo "ERROR: update-initramfs is not installed"
+    exit 1
+fi
+
+if [ ! -d "/lib/modules/${KERNEL_VERSION}" ]; then
+    echo "ERROR: kernel modules for ${KERNEL_VERSION} are not installed"
+    exit 1
+fi
+
+update-initramfs -c -k "${KERNEL_VERSION}"
+
+echo "==> AlphaOS: custom kernel initramfs generated."

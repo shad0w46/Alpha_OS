@@ -281,7 +281,9 @@
 /live
 /live/filesystem.packages
 /live/filesystem.squashfs
-/live/initrd.img-6.12.101+deb13-amd64
-/live/vmlinuz-6.12.101+deb13-amd64
+/live/initrd.img-6.12.107+deb13-amd64
+/live/initrd.img-6.19.0-alpha-alpha-6.19-schedext
+/live/vmlinuz-6.12.107+deb13-amd64
+/live/vmlinuz-6.19.0-alpha-alpha-6.19-schedext
 /sha256sum.README
 /sha256sum.txt

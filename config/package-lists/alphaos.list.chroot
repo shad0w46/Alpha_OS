@@ -2,7 +2,6 @@
 # AlphaOS Base
 # ============================================================
 
-live-boot
 live-config
 systemd-sysv
 locales

@@ -1,0 +1,36 @@
+#!/bin/sh
+set -eu
+
+echo "==> AlphaOS: removing Debian installer shortcuts..."
+
+# Remove known Debian installer desktop launchers.
+for file in \
+    /usr/share/applications/live-installer.desktop \
+    /usr/share/applications/debian-installer.desktop \
+    /usr/share/applications/install-debian.desktop \
+    /usr/share/applications/calamares-install-debian.desktop \
+    /etc/skel/Desktop/install-debian.desktop \
+    /etc/skel/Desktop/Install-Debian.desktop \
+    /root/Desktop/install-debian.desktop \
+    /root/Desktop/Install-Debian.desktop
+do
+    if [ -e "$file" ]; then
+        echo "Removing: $file"
+        rm -f "$file"
+    fi
+done
+
+# Remove desktop launchers whose visible name is exactly "Install Debian".
+for dir in /usr/share/applications /etc/skel/Desktop /root/Desktop; do
+    [ -d "$dir" ] || continue
+
+    find "$dir" -type f -name '*.desktop' -print0 2>/dev/null |
+    while IFS= read -r -d '' file; do
+        if grep -q '^Name=Install Debian$' "$file" 2>/dev/null; then
+            echo "Removing: $file"
+            rm -f "$file"
+        fi
+    done
+done
+
+echo "==> AlphaOS: Debian installer shortcuts removed."

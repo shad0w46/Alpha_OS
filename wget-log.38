@@ -1,0 +1,11 @@
+--2026-09-16 09:39:26--  http://deb.debian.org/debian//dists/trixie/non-free-firmware/Contents-amd64.gz
+Resolving deb.debian.org (deb.debian.org)... 2a04:4e42:fea::644, 2a04:4e42:fe7::644, 167.82.62.132, ...
+Connecting to deb.debian.org (deb.debian.org)|2a04:4e42:fea::644|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 1149 (1.1K) [application/x-gzip]
+Saving to: ‘cache/contents.chroot/trixie/non-free-firmware/contents-amd64.gz’
+
+     0K .                                                     100%  120M=0s
+
+2026-09-16 09:39:26 (120 MB/s) - ‘cache/contents.chroot/trixie/non-free-firmware/contents-amd64.gz’ saved [1149/1149]
+
