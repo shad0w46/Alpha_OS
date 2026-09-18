@@ -6,7 +6,7 @@
 /tftpboot/
 /.stage/
 /stages/
-
+iso-patch
 # Generated ISO/images and checksums
 *.iso
 *.iso.hybrid
