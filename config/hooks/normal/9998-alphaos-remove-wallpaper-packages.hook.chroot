@@ -1,0 +1,13 @@
+#!/bin/sh
+set -e
+
+echo "=== AlphaOS: removing Debian wallpaper packages ==="
+
+apt-get purge -y \
+    desktop-wallpaper 2>/dev/null || true
+
+apt-get autoremove -y 2>/dev/null || true
+
+echo "=== AlphaOS: wallpaper package cleanup complete ==="
+
+exit 0

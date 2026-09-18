@@ -3,26 +3,121 @@
         "type": "file",
         "source": "/usr/share/fastfetch/logos/alpha.txt"
     },
+
     "modules": [
         "title",
         "separator",
+
         {
             "type": "os",
             "key": "OS",
-            "format": "AlphaOS moyo"
+            "format": "AlphaOS"
         },
-        "host",
-        "kernel",
-        "uptime",
-        "packages",
-        "shell",
-        "display",
-        "de",
-        "wm",
-        "terminal",
-        "cpu",
-        "gpu",
-        "memory",
-        "disk"
+
+        {
+            "type": "host",
+            "key": "Host"
+        },
+
+        {
+            "type": "kernel",
+            "key": "Kernel"
+        },
+
+        {
+            "type": "architecture",
+            "key": "Arch"
+        },
+
+        {
+            "type": "uptime",
+            "key": "Uptime"
+        },
+
+        {
+            "type": "packages",
+            "key": "Packages"
+        },
+
+        {
+            "type": "shell",
+            "key": "Shell"
+        },
+
+        {
+            "type": "display",
+            "key": "Display"
+        },
+
+        {
+            "type": "de",
+            "key": "DE"
+        },
+
+        {
+            "type": "wm",
+            "key": "WM"
+        },
+
+        {
+            "type": "terminal",
+            "key": "Terminal"
+        },
+
+        "separator",
+
+        {
+            "type": "cpu",
+            "key": "CPU"
+        },
+
+        {
+            "type": "gpu",
+            "key": "GPU"
+        },
+
+        {
+            "type": "memory",
+            "key": "Memory"
+        },
+
+        {
+            "type": "swap",
+            "key": "Swap"
+        },
+
+        {
+            "type": "disk",
+            "key": "Disk"
+        },
+
+        {
+            "type": "localip",
+            "key": "IP"
+        },
+
+        "separator",
+
+        {
+            "type": "bios",
+            "key": "BIOS"
+        },
+
+        {
+            "type": "board",
+            "key": "Board"
+        },
+
+        {
+            "type": "cpuusage",
+            "key": "CPU Usage"
+        },
+
+        {
+            "type": "loadavg",
+            "key": "Load"
+        },
+
+        "break"
     ]
 }

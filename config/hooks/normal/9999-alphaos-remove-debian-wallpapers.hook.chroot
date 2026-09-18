@@ -1,0 +1,105 @@
+#!/bin/sh
+set -e
+
+echo "=== AlphaOS: removing Debian wallpapers ==="
+
+WALLPAPER="/usr/share/backgrounds/alphaos/wallpaper-1920x1080.png"
+
+# ------------------------------------------------------------
+# 1. Remove Debian desktop-base wallpaper themes
+# ------------------------------------------------------------
+
+for theme in \
+    ceratopsian-theme \
+    emerald-theme \
+    futureprototype-theme \
+    homeworld-theme \
+    joy-inksplat-theme \
+    joy-theme \
+    lines-theme \
+    moonlight-theme \
+    softwaves-theme \
+    spacefun-theme
+do
+    rm -rf "/usr/share/desktop-base/$theme"
+done
+
+# ------------------------------------------------------------
+# 2. Remove the Debian active-theme link
+# ------------------------------------------------------------
+
+rm -f /usr/share/desktop-base/active-theme
+
+# ------------------------------------------------------------
+# 3. Remove Debian desktop-background alternative
+# ------------------------------------------------------------
+
+if command -v update-alternatives >/dev/null 2>&1; then
+    update-alternatives --remove-all desktop-background 2>/dev/null || true
+fi
+
+rm -f \
+    /usr/share/images/desktop-base/desktop-background
+
+rm -f \
+    /var/lib/dpkg/alternatives/desktop-background
+
+# ------------------------------------------------------------
+# 4. Create AlphaOS desktop-background link
+# ------------------------------------------------------------
+
+mkdir -p /usr/share/images/desktop-base
+
+ln -sfn \
+    "$WALLPAPER" \
+    /usr/share/images/desktop-base/desktop-background
+
+# ------------------------------------------------------------
+# 5. Remove Debian wallpaper references from desktop-base
+# ------------------------------------------------------------
+
+find /usr/share/desktop-base \
+    -type f \
+    \( -name '*.xml' -o -name '*.desktop' -o -name '*.json' \) \
+    -exec sed -i \
+        -e 's#/usr/share/desktop-base/ceratopsian-theme/wallpaper/contents/images/1920x1080.svg#/usr/share/backgrounds/alphaos/wallpaper-1920x1080.png#g' \
+        {} \; 2>/dev/null || true
+
+# ------------------------------------------------------------
+# 6. Configure Plasma default wallpaper for new users
+# ------------------------------------------------------------
+
+mkdir -p /etc/skel/.config
+
+cat > /etc/skel/.config/plasma-org.kde.plasma.desktop-appletsrc <<EOC
+[Containments][1]
+activityId=
+formfactor=0
+immutability=1
+lastScreen=0
+location=0
+plugin=org.kde.plasma.folder
+wallpaperplugin=org.kde.image
+
+[Containments][1][Wallpaper][org.kde.image][General]
+Image=file://${WALLPAPER}
+PreviewImage=file://${WALLPAPER}
+SlidePaths=
+SlideInterval=0
+EOC
+
+# ------------------------------------------------------------
+# 7. Configure XFCE default wallpaper too
+# ------------------------------------------------------------
+
+XFCE_CONFIG="/etc/skel/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml"
+
+if [ -f "$XFCE_CONFIG" ]; then
+    sed -i \
+        's#/usr/share/backgrounds/alphaos/[^"]*#/usr/share/backgrounds/alphaos/wallpaper-1920x1080.png#g' \
+        "$XFCE_CONFIG"
+fi
+
+echo "=== AlphaOS: Debian wallpaper cleanup complete ==="
+
+exit 0

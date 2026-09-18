@@ -3,9 +3,8 @@ logo = Image("alphaos-logo.png");
 screen_width = Window.GetWidth();
 screen_height = Window.GetHeight();
 
-/* Maximum logo size */
-max_width = 220;
-max_height = 220;
+max_width = 280;
+max_height = 280;
 
 logo_width = logo.GetWidth();
 logo_height = logo.GetHeight();

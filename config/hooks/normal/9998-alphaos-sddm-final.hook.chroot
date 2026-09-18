@@ -1,0 +1,22 @@
+#!/bin/bash
+set -e
+
+# Remove Debian's SDDM theme and any Debian-specific SDDM configuration.
+rm -rf /usr/share/sddm/themes/debian-theme
+rm -rf /usr/share/sddm/themes/debian-breeze
+
+rm -f /etc/sddm.conf
+rm -f /etc/sddm.conf.d/*debian*.conf
+rm -f /etc/sddm.conf.d/*theme*.conf
+
+# Force AlphaOS SDDM theme.
+mkdir -p /etc/sddm.conf.d
+
+cat > /etc/sddm.conf.d/99-alphaos.conf <<'EOF'
+[Theme]
+Current=alphaos
+EOF
+
+# Ensure the AlphaOS theme exists.
+test -f /usr/share/sddm/themes/alphaos/Main.qml
+test -f /usr/share/sddm/themes/alphaos/theme.conf

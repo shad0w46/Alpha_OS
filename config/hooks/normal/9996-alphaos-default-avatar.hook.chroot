@@ -1,0 +1,33 @@
+#!/bin/bash
+set -e
+
+AVATAR="/var/lib/AccountsService/icons/alpha.png"
+
+if [ ! -f "$AVATAR" ]; then
+    exit 0
+fi
+
+# Configure the default AccountsService icon for newly created users.
+mkdir -p /var/lib/AccountsService/icons
+
+# Keep the AlphaOS logo available as the default face.
+install -m 0644 "$AVATAR" \
+    /var/lib/AccountsService/icons/alphaos-default.png
+
+# Configure the AlphaOS Live user avatar.
+mkdir -p /var/lib/AccountsService/users
+cat > /var/lib/AccountsService/users/alpha <<EOF
+[User]
+Icon=/var/lib/AccountsService/icons/alphaos-default.png
+SystemAccount=false
+EOF
+# Configure AccountsService default icon behavior.
+mkdir -p /etc/xdg/AccountsService
+
+# Provide the AlphaOS avatar to the desktop user-account fallback.
+mkdir -p /etc/skel
+install -m 0644 "$AVATAR" /etc/skel/.face.icon
+cat > /etc/xdg/AccountsService/user-template.conf <<'EOF'
+[User]
+Icon=/var/lib/AccountsService/icons/alphaos-default.png
+EOF

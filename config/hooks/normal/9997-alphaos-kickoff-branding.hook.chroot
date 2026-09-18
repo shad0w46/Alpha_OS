@@ -1,0 +1,29 @@
+#!/bin/sh
+set -e
+
+echo "=== AlphaOS: configuring KDE launcher branding ==="
+
+ICON="/usr/share/icons/hicolor/256x256/apps/alphaos.png"
+
+# Make sure KDE's icon cache sees the AlphaOS icon.
+if command -v gtk-update-icon-cache >/dev/null 2>&1; then
+    gtk-update-icon-cache -f -t /usr/share/icons/hicolor 2>/dev/null || true
+fi
+
+# KDE Plasma launcher configuration for new users.
+mkdir -p /etc/skel/.config
+
+KICKOFF="/etc/skel/.config/plasma-org.kde.plasma.desktop-appletsrc"
+
+if [ -f "$KICKOFF" ]; then
+    # Replace common Debian/KDE launcher icon names.
+    sed -i \
+        -e 's/^icon=debian$/icon=alphaos/g' \
+        -e 's/^icon=start-here-kde$/icon=alphaos/g' \
+        -e 's/^icon=start-here$/icon=alphaos/g' \
+        "$KICKOFF"
+fi
+
+echo "=== AlphaOS: KDE launcher branding configured ==="
+
+exit 0

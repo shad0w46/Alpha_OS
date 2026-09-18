@@ -1,8 +1,0 @@
-[Desktop Entry]
-Type=Application
-Name=Install AlphaOS
-Comment=Install AlphaOS to your computer
-Exec=calamares
-Icon=alpha
-Terminal=false
-Categories=System;

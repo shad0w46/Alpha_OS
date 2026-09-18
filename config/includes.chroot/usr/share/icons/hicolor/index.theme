@@ -1,0 +1,17 @@
+[Icon Theme]
+Name=AlphaOS Hicolor
+Comment=AlphaOS icon overrides
+Inherits=hicolor
+Directories=256x256/places,128x128/places,64x64/places
+
+[256x256/places]
+Size=256
+Type=Fixed
+
+[128x128/places]
+Size=128
+Type=Fixed
+
+[64x64/places]
+Size=64
+Type=Fixed

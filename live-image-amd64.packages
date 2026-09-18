@@ -28,9 +28,9 @@ base-files	13.8+deb13u7
 base-passwd	3.6.7
 bash	5.2.37-2+b10
 bash-completion	1:2.16.0-7
-bind9-dnsutils	1:9.20.26-1~deb13u1
-bind9-host	1:9.20.26-1~deb13u1
-bind9-libs:amd64	1:9.20.26-1~deb13u1
+bind9-dnsutils	1:9.20.29-1~deb13u1
+bind9-host	1:9.20.29-1~deb13u1
+bind9-libs:amd64	1:9.20.29-1~deb13u1
 binutils	2.44-3
 binutils-common:amd64	2.44-3
 binutils-x86-64-linux-gnu	2.44-3
@@ -126,7 +126,7 @@ fdisk	2.41.5-0+deb13u1
 ffmpegthumbs	4:25.04.0-2
 file	1:5.46-5
 findutils	4.10.0-3
-firefox-esr	140.15.0esr-1~deb13u1
+firefox-esr	140.16.0esr-1~deb13u1
 firmware-amd-graphics	20250410-2
 firmware-ast	20140808-10
 firmware-ath9k-htc	1.4.0-110-ge888634+dfsg1-0.1

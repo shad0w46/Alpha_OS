@@ -1,0 +1,10 @@
+[SddmGreeterTheme]
+Name=AlphaOS
+Description=AlphaOS SDDM Theme
+Author=AlphaOS
+License=GPL-3.0-or-later
+Type=sddm-theme
+Version=1.0
+MainScript=Main.qml
+ConfigFile=theme.conf
+QtVersion=6
